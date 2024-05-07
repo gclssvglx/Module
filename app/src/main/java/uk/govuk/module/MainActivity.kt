@@ -27,6 +27,7 @@ class MainActivity : ComponentActivity() {
                     Column {
                         Greeting("Android")
                         ModuleStart()
+                        Greeting("I'm Android too")
                     }
                 }
             }
