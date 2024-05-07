@@ -1,14 +1,20 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    `maven-publish`
 }
 
 android {
     namespace = "com.gclewis.module"
     compileSdk = 34
+    group = "com.gclewis"
+    version = "0.0.0-alpha"
 
     defaultConfig {
         minSdk = 24
+        aarMetadata {
+            minCompileSdk = 24
+        }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -35,6 +41,15 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
+    }
+    testFixtures {
+        enable = true
+    }
+    publishing {
+        multipleVariants {
+            allVariants()
+            withSourcesJar()
+        }
     }
 }
 
