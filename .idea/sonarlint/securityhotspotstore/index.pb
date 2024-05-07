@@ -7,3 +7,5 @@ G
 module/build.gradle.kts,4/f/4f0d71fe573fe09b2bac14a89c3625927fcd64c8
 a
 1app/src/main/java/uk/govuk/module/MainActivity.kt,2/5/254f6dd9d21898c300f1106e906404e540bbe277
+C
+settings.gradle.kts,7/4/749edfcc96398253e5b3416184e95c46621da850
