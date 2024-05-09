@@ -1,34 +1,27 @@
-name: Upload AAR
-
+name: Build
 on:
-  workflow_call:
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}-aar
-  cancel-in-progress: true
+  push:
+    branches: [ arr-test, develop, main ]
+  pull_request:
+    branches: [ arr-test, develop, main ]
 
 jobs:
-  run-linters:
-    name: Upload AAR
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: oracle
-
-      - name: Setup Android SDK Tools
-        uses: android-actions/setup-android@v3
-
-      - name: Build
+      - name: Build with Gradle
         uses: ./gradlew build
-
       - name: Upload AAR
         uses: actions/upload-artifact@v4
         with:
           name: AAR
           path: module/build/outputs/aar/module-debug.aar
+      - name: Checkout - for clean up
+        uses: actions/checkout@v4
