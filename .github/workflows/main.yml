@@ -1,9 +1,9 @@
 name: Build
 on:
   push:
-    branches: [ arr-test, develop, main ]
+    branches: [ develop ]
   pull_request:
-    branches: [ arr-test, develop, main ]
+    branches: [ develop ]
 
 jobs:
   build:
@@ -11,10 +11,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: oracle
+
+      - name: Setup Android SDK Tools
+        uses: android-actions/setup-android@v3
+
       - name: Build with Gradle
-        uses: ./gradlew build
+        run: ./gradlew build
+
+      - name: Upload AAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: aar
+          path: module/build/outputs/aar/module-debug.aar
