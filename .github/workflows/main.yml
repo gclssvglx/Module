@@ -16,8 +16,5 @@ jobs:
         with:
           java-version: 17
           distribution: oracle
-      - name: Upload AAR
-        uses: actions/upload-artifact@v4
-        with:
-          name: AAR
-          path: module/build/outputs/aar/module-debug.aar
+      - name: Build with Gradle
+        uses: ./gradlew build
