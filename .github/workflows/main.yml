@@ -29,3 +29,6 @@ jobs:
         with:
           name: aar
           path: module/build/outputs/aar/module-debug.aar
+
+      - name: Maven publish check
+        run: ./gradlew publishToMavenLocal
